@@ -15,7 +15,8 @@
     "psr/log": "*",
     "psr/cache": "*",
     "psr/container": "*",
-    "psr/link": "*"
+    "psr/link": "*",
+    "symfony/var-dumper": "^4"
   },
   "autoload": {
     "psr-4": {

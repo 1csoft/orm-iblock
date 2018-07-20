@@ -179,10 +179,4 @@ class PropertyData implements IProperty
 		);
 	}
 
-	public function registerEventHandler()
-	{
-		$eventManager = Main\EventManager::getInstance();
-//		$eventManager->registerEventHandlerCompatible('main', '');
-	}
-
 }

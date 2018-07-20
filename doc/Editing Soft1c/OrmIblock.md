@@ -2,7 +2,7 @@
 
 “.к. этот класс наследован от Bitrix\Main\Entity\DataManager, он имеет все возможности родител€.
 
-ElementTable::getEntity() - построение сущности инфоблока. ≈сли передать в нее ид инфоблока - соберет сущность со свойствами.
+**ElementTable::getEntity()** - построение сущности инфоблока. ≈сли передать в нее ид инфоблока - соберет сущность со свойствами.
 ```php
 Soft1c\OrmIblock\ElementTable::getEntity($iblock_id);
 ```
@@ -10,9 +10,9 @@ Soft1c\OrmIblock\ElementTable::getEntity($iblock_id);
 таблицы b_iblock_element_prop_s или на b_iblock_element_property.
 
 
-ElementTable::query($iblock_id = null) - получение объекта Query, если передать ид »Ѕ, то действие будет аналогично ElementTable::getEntity.
+**ElementTable::query($iblock_id = null)** - получение объекта Query, если передать ид »Ѕ, то действие будет аналогично ElementTable::getEntity.
 
-ElementTable::getList(array $parameters = array()) - стандартный getList, принимает все теже параметры, что и 
+**ElementTable::getList(array $parameters = array())** - стандартный getList, принимает все теже параметры, что и 
 Bitrix\Main\Entity\DataManager::getList.
 
 ѕримеры:
@@ -47,7 +47,7 @@ PROPERTY.ADDITIONAL_MIN - будет выбрано простое строковое или html значение.
 
 
 
-ElementTable::getProperty(array $parameters) - внутренний метод получение одного или всех свойств элемента по параметрам
+**ElementTable::getProperty(array $parameters)** - внутренний метод получение одного или всех свойств элемента по параметрам
 DataManager::getList. Ётот метод выдирает `Bitrix\Iblock\PropertyTable::getList($parameters)`, а перед этим собирает
 Entity таблицы со значение€ми конкретного инфоблока и элемента и пристегивает к PropertyTable. ѕосему, в $parameters об€зательно должны быть ключи
 ```php
@@ -56,10 +56,10 @@ $elementId = (int)$parameters['filter']['IBLOCK_ELEMENT_ID'];
 ```
 Ётот метод редко приходитс€ юзать, € бы сказал в довольно экзотичных задачах. Ѕолее используютс€ его обертки:
 
-ElementTable::getPropertyByCode(int $elementId, int $iblockId, string $code, $select = false) - получение св-ва елемента
+**ElementTable::getPropertyByCode(int $elementId, int $iblockId, string $code, $select = false)** - получение св-ва елемента
 по его символьному коду.
 
-ElementTable::getPropertyById(int $elementId, int $iblockId, string $code, $select = false) - получение св-ва елемента
+**ElementTable::getPropertyById(int $elementId, int $iblockId, string $code, $select = false)** - получение св-ва елемента
 по его ID.
 
 ¬ обоих методах есть параметр $select и в него можно указать какие пол€ дополнительно выдрать, если текущее св-во есть 

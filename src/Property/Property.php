@@ -57,4 +57,13 @@ class Property
 	{
 
 	}
+
+	public static function registerEventHandler()
+	{
+//		$eventManager = Main\EventManager::getInstance();
+//		$eventManager->registerEventHandlerCompatible('main', '');
+//		PR($eventManager, 1);
+
+
+	}
 }

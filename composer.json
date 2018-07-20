@@ -1,0 +1,24 @@
+{
+  "name": "1csoft/orm-iblock",
+  "description": "Test package",
+  "type": "library",
+  "authors": [
+    {
+      "name": "GrandMaster",
+      "email": "st.dremin@ya.ru"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.0.8",
+    "psr/log": "*",
+    "psr/cache": "*",
+    "psr/container": "*",
+    "psr/link": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Soft1c\\OrmIblock": "src/"
+    }
+  }
+}

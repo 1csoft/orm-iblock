@@ -1,11 +1,12 @@
 {
   "name": "1csoft/orm-iblock",
-  "description": "Test package",
+  "description": "ORM D7 для инфоблоков битрикса",
   "type": "library",
   "authors": [
     {
       "name": "GrandMaster",
-      "email": "st.dremin@ya.ru"
+      "email": "st.dremin@ya.ru",
+      "company" : "1C"
     }
   ],
   "license": "MIT",

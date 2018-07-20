@@ -98,6 +98,7 @@ class ElementTable extends Main\Entity\DataManager
 	 * @param array $parameters
 	 *
 	 * @return Main\DB\Result
+	 * @internal
 	 */
 	public static function getProperty(array $parameters)
 	{

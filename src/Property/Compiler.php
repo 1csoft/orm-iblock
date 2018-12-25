@@ -83,7 +83,7 @@ abstract class Compiler
 		$utmManger = new UtmManager($arProp['IBLOCK_ID']);
 
 		$field->addFetchDataModifier(function ($value, $field, $data, $alias) use ($arProp, $utmManger) {
-			if (count($value) == 0){
+			if (!$value || count($value) == 0){
 				$result = $utmManger->modifierResultMulti($data, $arProp);
 			} else {
 				$result = $value;

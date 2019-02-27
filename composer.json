@@ -1,0 +1,25 @@
+{
+  "name": "1csoft/orm-iblock",
+  "description": "ORM D7 для инфоблоков битрикса",
+  "type": "library",
+  "authors": [
+    {
+      "name": "GrandMaster",
+      "email": "st.dremin@ya.ru"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.0.8",
+    "psr/log": "*",
+    "psr/cache": "*",
+    "psr/container": "*",
+    "psr/link": "*",
+    "symfony/var-dumper": "^4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Soft1c\\OrmIblock\\": "src/"
+    }
+  }
+}

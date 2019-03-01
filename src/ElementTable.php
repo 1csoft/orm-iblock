@@ -32,16 +32,18 @@ class ElementTable extends Main\ORM\Data\DataManager
 	public static function getEntity($iblockId = null)
 	{
 		$name = static::ENTITY_BASE_NAME.$iblockId;
-		if (!Main\Entity\Base::isExists(__NAMESPACE__.'\\'.$name)){
-			$entity = Main\Entity\Base::compileEntity($name, Iblock\ElementTable::getMap(), [
+		if (!IblockEntityMain::isExists(__NAMESPACE__.'\\'.$name)){
+			$entity = IblockEntityMain::compileEntity($name, Iblock\ElementTable::getMap(), [
 				'namespace' => __NAMESPACE__,
 				'table_name' => 'b_iblock_element',
 			]);
 		} else {
-			$entity = Main\Entity\Base::getInstance(__NAMESPACE__.'\\'.$name);
+			$entity = IblockEntityMain::getInstance(__NAMESPACE__.'\\'.$name);
 		}
 
 		if ($iblockId){
+			IblockEntityMain::setIblockId($iblockId);
+
 			$entity->addField(new Main\Entity\ReferenceField(
 				'PROPERTY',
 				Property\Property::getEntity($iblockId),
@@ -249,4 +251,5 @@ class ElementTable extends Main\ORM\Data\DataManager
 	{
 		return preg_replace('/^['.self::$operandsInProp.']+/i', '', $fieldName);
 	}
+
 }

@@ -21,6 +21,11 @@ class Query extends Main\ORM\Query\Query
 				$this->addFilter('WF_PARENT_ELEMENT_ID', false);
 		}
 
+		if(method_exists($this->getEntity(), 'getIblockId')){
+			$ib = $this->getEntity()->getIblockId();
+			if((int)$ib > 0)
+				$this->where('IBLOCK_ID','=', $ib);
+		}
 
 		$event = new Main\Event('main', self::ON_BEFORE_EXEC.IblockV1Entity::ENTITY_NAME, ['QUERY' => $this]);
 		$event->send();
@@ -28,7 +33,7 @@ class Query extends Main\ORM\Query\Query
 		return parent::buildQuery();
 	}
 
-	public function setEntity(Main\Entity\Base $entity)
+	public function setEntity(IblockEntityMain $entity)
 	{
 		$this->entity = $entity;
 	}

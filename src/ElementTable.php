@@ -9,6 +9,8 @@ namespace Soft1c\OrmIblock;
 
 use Bitrix\Main;
 use Bitrix\Iblock;
+use Esd\Debug;
+use Soft1c\Logger\FilesLog;
 use Soft1c\OrmIblock\Property;
 
 Main\Loader::includeModule('iblock');
@@ -31,18 +33,20 @@ class ElementTable extends Main\ORM\Data\DataManager
 	 */
 	public static function getEntity($iblockId = null)
 	{
+		$IblockEntityMain = new IblockEntityMain($iblockId);
 		$name = static::ENTITY_BASE_NAME.$iblockId;
-		if (!IblockEntityMain::isExists(__NAMESPACE__.'\\'.$name)){
-			$entity = IblockEntityMain::compileEntity($name, Iblock\ElementTable::getMap(), [
+
+		if (!$IblockEntityMain->isExists(__NAMESPACE__.'\\'.$name)){
+			$entity = $IblockEntityMain->compileEntity($name, Iblock\ElementTable::getMap(), [
 				'namespace' => __NAMESPACE__,
 				'table_name' => 'b_iblock_element',
 			]);
 		} else {
-			$entity = IblockEntityMain::getInstance(__NAMESPACE__.'\\'.$name);
+			$entity = $IblockEntityMain->getInstance(__NAMESPACE__.'\\'.$name);
 		}
 
 		if ($iblockId){
-			IblockEntityMain::setIblockId($iblockId);
+			$IblockEntityMain->setIblockId($iblockId);
 
 			$entity->addField(new Main\Entity\ReferenceField(
 				'PROPERTY',
@@ -68,15 +72,14 @@ class ElementTable extends Main\ORM\Data\DataManager
 	 * @method query
 	 * @param null $iblockId
 	 *
-	 * @return Main\Entity\Query
+	 * @return Query
 	 */
-	public static function query($iblockId = null)
+	public static function query($iblockId = null): Query
 	{
 		if ((int)$iblockId == 0)
 			$iblockId = (int)static::$params['filter']['IBLOCK_ID'];
 
 		$query = new Query(static::getEntity($iblockId));
-
 
 		return $query;
 	}
@@ -252,4 +255,29 @@ class ElementTable extends Main\ORM\Data\DataManager
 		return preg_replace('/^['.self::$operandsInProp.']+/i', '', $fieldName);
 	}
 
+	/**
+	 * @method getIblockByElement
+	 * @param int $id
+	 *
+	 * @return int
+	 */
+	public static function getIblockByElement(int $id): int
+	{
+		$iblock = Iblock\ElementTable::getRow([
+			'select' => ['IBLOCK_ID'],
+			'filter' => ['=ID' => $id]
+		]);
+		return (int)$iblock['IBLOCK_ID'];
+	}
+
+	/**
+	 * @method getPropertyList
+	 * @param int $iblockId
+	 *
+	 * @return ParametersBag
+	 */
+	public static function getPropertyList(int $iblockId)
+	{
+		return (new Property\PropertyData($iblockId))->getPropertyData();
+	}
 }

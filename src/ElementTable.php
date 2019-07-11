@@ -29,7 +29,7 @@ class ElementTable extends Main\ORM\Data\DataManager
 	 * @method getEntity
 	 * @param null $iblockId
 	 *
-	 * @return Main\Entity\Base
+	 * @return IblockEntityMain
 	 */
 	public static function getEntity($iblockId = null)
 	{
@@ -41,8 +41,11 @@ class ElementTable extends Main\ORM\Data\DataManager
 				'namespace' => __NAMESPACE__,
 				'table_name' => 'b_iblock_element',
 			]);
+			$entity->setIblockId($iblockId);
+
 		} else {
 			$entity = $IblockEntityMain->getInstance(__NAMESPACE__.'\\'.$name);
+			$entity->setIblockId($iblockId);
 		}
 
 		if ($iblockId){
@@ -79,7 +82,9 @@ class ElementTable extends Main\ORM\Data\DataManager
 		if ((int)$iblockId == 0)
 			$iblockId = (int)static::$params['filter']['IBLOCK_ID'];
 
-		$query = new Query(static::getEntity($iblockId));
+		$entity = static::getEntity($iblockId);
+		$entity->setIblockId($iblockId);
+		$query = new Query($entity);
 
 		return $query;
 	}

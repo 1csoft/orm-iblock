@@ -14,23 +14,43 @@ class IblockEntityMain extends Entity
 {
 
 	/** @var null|int */
-	protected static $iblockId = null;
+	protected $iblockId = null;
+
+	/**
+	 * IblockEntityMain constructor.
+	 *
+	 * @param int|null $iblockId
+	 */
+	public function __construct(int $iblockId = null)
+	{
+		$this->iblockId = $iblockId;
+	}
+
 
 	/**
 	 * @method getIblockId - get param iblockId
 	 * @return int|null
 	 */
-	public static function getIblockId()
+	public function getIblockId()
 	{
-		return self::$iblockId;
+		return $this->iblockId;
 	}
 
 	/**
 	 * @method setIblockId - set param IblockId
 	 * @param int|null $iblockId
 	 */
-	public static function setIblockId($iblockId)
+	public function setIblockId($iblockId)
 	{
-		self::$iblockId = $iblockId;
+		$this->iblockId = $iblockId;
+	}
+
+	/**
+	 * @method isClone
+	 * @return bool
+	 */
+	public function isClone()
+	{
+		return $this->isClone;
 	}
 }

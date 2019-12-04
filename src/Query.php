@@ -14,6 +14,10 @@ class Query extends Main\ORM\Query\Query
 {
 	const ON_BEFORE_EXEC = 'OnBeforeExec';
 
+	/**
+	 * @method buildQuery
+	 * @return Main\ORM\Query\Query
+	 */
 	public function buildQuery()
 	{
 		if(Main\Loader::includeModule('workflow') && !array_key_exists('WF_PARENT_ELEMENT_ID', $this->getFilter())){

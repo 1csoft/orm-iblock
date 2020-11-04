@@ -133,6 +133,8 @@ class IblockEntityMain extends Entity
 		{
 			$classCode .= 'public static function getObjectParentClass(){return '.var_export($parameters['object_parent'], true).';}';
 		}
+		
+		$classCode .= 'public static function getEntityClass(){return IblockEntityMain::class;}';
 
 		// create entity
 		eval($classCode.$classCodeEnd);
